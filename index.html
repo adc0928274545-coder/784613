@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Oxanium:wght@300;400;500;600&display=swap" rel="stylesheet">
+   
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Future Path</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#8B0000">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent">
+
+    <meta name="apple-mobile-web-app-title"
+        content="Future Path">
+
+    <link rel="apple-touch-icon"
+        href="icon-512.png">
+
+</head>
+
+<body>
+    <!-- ===== Install Screen ===== -->
+
+<div id="installScreen" class="screen">
+
+    <h1 id="installTitle">นี่คือโอกาสของคุณ</h1>
+
+    <p id="installText"></p>
+
+    <div class="progress">
+
+        <div id="installBar"></div>
+
+    </div>
+
+    <h2 id="installPercent"></h2>
+
+</div>
+
+<!-- ================= Splash ================= -->
+
+<div id="splash" class="screen hidden">
+
+    <div class="intro">
+
+        <img src="logo.png" class="logo">
+
+        <h1>Future Path</h1>
+
+        <p id="typing"></p>
+
+        <button id="startBtn" onclick="showHome()">
+            เริ่มต้น
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= Home ================= -->
+
+<div id="home"
+    class="screen hidden">
+
+    <div class="card">
+
+        <h2>ข้อมูลผู้ใช้</h2>
+
+        <input
+            type="text"
+            id="fullname"
+            placeholder="ชื่อ - นามสกุล">
+
+        <input
+            type="date"
+            id="birthday">
+
+        <button onclick="startScan()">
+            วิเคราะห์อนาคต
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= Loading ================= -->
+
+<div id="loading"
+    class="screen hidden">
+
+    <div class="loader"></div>
+
+    <h2>กำลังวิเคราะห์เส้นทางชีวิต...</h2>
+
+    <p id="loadingText">
+        AI กำลังประมวลผล
+    </p>
+
+    <div class="progress">
+
+        <div id="progressBar"></div>
+
+    </div>
+
+    <h2 id="percent">
+        0%
+    </h2>
+
+</div>
+
+<!-- ================= Result ================= -->
+
+<div id="result"
+    class="screen hidden">
+
+    <h1>ผลการวิเคราะห์</h1>
+
+    <div class="path-card">
+
+        <h2>
+            เส้นทางที่ 1
+        </h2>
+
+        <div class="btn-row">
+
+            <button
+                onclick="viewPath(1)">
+                👁️ ดู
+            </button>
+
+            <button
+                class="choose"
+                onclick="choosePath(1)">
+                ✔ เลือก
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="path-card">
+
+        <h2>
+            เส้นทางที่ 2
+        </h2>
+
+        <div class="btn-row">
+
+            <button
+                onclick="viewPath(2)">
+                👁️ ดู
+            </button>
+
+            <button
+                class="choose"
+                onclick="choosePath(2)">
+                ✔ เลือก
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= Path 1 ================= -->
+
+<div id="path1"
+    class="screen hidden">
+
+    <div class="card">
+
+        <h2>
+            เส้นทางที่ 1
+        </h2>
+
+        <p>
+
+            
+
+        </p>
+
+        <button
+            onclick="backResult()">
+
+            กลับ
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= Path 2 ================= -->
+
+<div id="path2"
+    class="screen hidden">
+
+    <div class="card">
+
+        <h2>
+            เส้นทางที่ 2
+        </h2>
+
+        <p>
+
+            
+        </p>
+
+        <button
+            onclick="backResult()">
+
+            กลับ
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+<!-- Popup ยืนยัน -->
+<div id="confirmPopup" class="popup hidden">
+
+    <div class="popup-box">
+
+        <h2>ยืนยันการเลือก</h2>
+
+        <p id="popupText">
+            คุณต้องการเลือกเส้นทางนี้หรือไม่
+        </p>
+
+        <div class="popup-buttons">
+
+            <button class="cancel-btn" onclick="closePopup()">
+                ยกเลิก
+            </button>
+
+            <button class="ok-btn" onclick="confirmChoose()">
+                ตกลง
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

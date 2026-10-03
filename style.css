@@ -1,0 +1,618 @@
+/* ===========================
+   Future Path v2
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    overflow:hidden;
+}
+
+.screen{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:30px;
+    transition:.6s;
+}
+
+.hidden{
+    display:none;
+}
+
+/* Splash */
+
+.intro{
+    text-align:center;
+}
+
+.logo{
+
+    width:120px;
+
+    height:120px;
+
+    margin-bottom:40px;
+
+    object-fit:contain;
+
+}
+
+h1{
+    font-size:52px;
+    margin-bottom:15px;
+}
+
+#typing{
+    color:#d5d5d5;
+    font-size:20px;
+    min-height:60px;
+    margin-bottom:35px;
+}
+
+#startBtn{
+    opacity:0;
+    pointer-events:none;
+}
+
+/* Card */
+
+.card{
+
+    width:400px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    padding:30px;
+
+    text-align:center;
+
+}
+
+.card h2{
+
+    margin-bottom:25px;
+
+}
+
+/* Input */
+
+input{
+
+    width:100%;
+
+    padding:18px;
+
+    margin-top:18px;
+
+    background:#171717;
+
+    color:white;
+
+    border:none;
+
+    border-radius:15px;
+
+    font-size:17px;
+
+    outline:none;
+
+}
+
+/* Button */
+
+button{
+
+    width:100%;
+
+    margin-top:22px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,#ff3045,#9c0016);
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 0 25px rgba(255,0,40,.35);
+
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 35px rgba(255,0,40,.45);
+
+}
+
+button:active{
+
+    transform:scale(.97);
+
+}
+
+/* Loading */
+
+.loader{
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    border:8px solid #222;
+
+    border-top:8px solid #ff3045;
+
+    animation:spin 1s linear infinite;
+
+}
+
+#loading h2{
+
+    margin-top:30px;
+
+}
+
+#loadingText{
+
+    color:#aaa;
+
+    margin-top:10px;
+
+}
+
+
+#installBar{
+
+    width:0%;
+
+    height:100%;
+
+    border-radius:50px;
+
+    background:linear-gradient(90deg,#ff003c,#ff5c7d);
+
+    box-shadow:
+        0 0 8px #ff003c,
+        0 0 18px rgba(255,0,60,.7);
+
+}
+#percent{
+
+    margin-top:20px;
+
+}
+
+/* Result */
+
+.path-card{
+
+    width:420px;
+
+    background:#161616;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    margin:15px 0;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.path-card h2{
+
+    margin-bottom:18px;
+
+}
+
+.btn-row{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.btn-row button{
+
+    flex:1;
+
+}
+
+.choose{
+
+    background:linear-gradient(135deg,#d1001d,#780010);
+
+}
+
+/* Animation */
+
+.fadeIn{
+
+    animation:fade .6s;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes logoAppear{
+
+    0%{
+
+        opacity:0;
+
+        transform:translateY(30px) scale(.8);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes glow{
+
+    0%{
+
+        filter:drop-shadow(0 0 5px red);
+
+    }
+
+    50%{
+
+        filter:drop-shadow(0 0 25px red);
+
+    }
+
+    100%{
+
+        filter:drop-shadow(0 0 5px red);
+
+    }
+
+}
+/* ================= Popup ================= */
+
+.popup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.popup.hidden{
+
+    display:none;
+
+}
+
+.popup-box{
+
+    width:340px;
+
+    background:#1c1c1e;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.popup-box h2{
+
+    margin-bottom:15px;
+
+}
+
+.popup-box p{
+
+    color:#d0d0d0;
+
+    line-height:28px;
+
+    margin-bottom:25px;
+
+}
+
+.popup-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.cancel-btn{
+
+    flex:1;
+
+    background:#3a3a3c;
+
+}
+
+.ok-btn{
+
+    flex:1;
+
+    background:linear-gradient(135deg,#ff3045,#980016);
+
+}
+/* ===== Install ===== */
+
+#installScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#000;
+
+    overflow:hidden;
+
+}
+
+.installBox{
+
+    width:100%;
+
+    max-width:450px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    margin:auto;
+
+}
+
+#installTitle{
+
+    width:100%;
+
+    text-align:center;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:clamp(32px,7vw,48px);
+
+    line-height:1.2;
+
+    color:#ff3d63;
+
+    margin-bottom:60px;
+
+    text-shadow:
+        0 0 10px #ff003c,
+        0 0 25px rgba(255,0,70,.8);
+
+}
+#installText{
+
+    font-size:22px;
+
+    color:#ddd;
+
+    margin-bottom:25px;
+
+    min-height:35px;
+
+}
+
+.progress{
+
+    width:min(340px,85vw);
+
+    height:8px;
+
+    margin:45px auto 0;
+
+    background:#1d1d1d;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    box-shadow:0 0 12px rgba(255,0,60,.2);
+
+}
+
+#installPercent{
+
+    margin-top:22px;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:clamp(24px,5vw,34px);
+
+    color:#ff4b6d;
+
+    letter-spacing:2px;
+
+    text-shadow:0 0 10px rgba(255,0,70,.6);
+
+}
+#installStatus{
+
+    margin-top:35px;
+
+    font-family:'Oxanium',sans-serif;
+
+    font-size:20px;
+
+    letter-spacing:2px;
+
+    color:#d9d9d9;
+
+    text-shadow:0 0 10px rgba(255,0,70,.3);
+
+}
+.installBox{
+
+    width:100%;
+
+    max-width:420px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:20px;
+
+}
+@keyframes titleGlow{
+
+    0%{
+
+        opacity:.75;
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+        transform:scale(1.02);
+
+        text-shadow:
+            0 0 12px #ff003c,
+            0 0 30px #ff003c,
+            0 0 50px rgba(255,0,70,.8);
+
+    }
+
+    100%{
+
+        opacity:.75;
+
+        transform:scale(1);
+
+    }
+
+}
